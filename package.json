@@ -1,0 +1,40 @@
+{
+  "name": "lambda-load-media",
+  "version": "0.0.0",
+  "description": "",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "author": "",
+  "exports": {
+    ".": {
+      "node": "./build/node/src/index.js"
+    }
+  },
+  "scripts": {
+    "test": "genie test",
+    "build": "genie build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dashkite/lambda-load-media.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/dashkite/lambda-load-media/issues"
+  },
+  "homepage": "https://github.com/dashkite/lambda-load-media#readme",
+  "devDependencies": {
+    "@dashkite/amen": "^0.2.0",
+    "@dashkite/amen-console": "^0.0.2",
+    "@dashkite/assert": "^0.1.4",
+    "@dashkite/bake": "^0.0.6",
+    "@dashkite/dolores": "link:../dolores",
+    "@dashkite/genie": "^0.5.11",
+    "@dashkite/genie-presets": "^0.6.2",
+    "@dashkite/sky-presets": "link:../sky-presets"
+  },
+  "dependencies": {
+    "@dashkite/graphene-core": "link:../graphene-core",
+    "@dashkite/media-type": "link:../media-type",
+    "@dashkite/sky-lambda": "link:../sky-lambda"
+  }
+}
