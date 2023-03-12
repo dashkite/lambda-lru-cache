@@ -48,7 +48,7 @@ initialize = do ({ queue, address, topic, subscribed } = {}) -> ->
   address ?= convert from: "bytes", to: "base36",
     await randomBytes 8
 
-  queue ?= await Queue.create address
+  queue ?= await Queue.create "lru-#{ address }"
 
   # TODO topic name should come from configuration
   topic ?= await Topic.create "dashkite-lru-cache"
@@ -60,6 +60,9 @@ initialize = do ({ queue, address, topic, subscribed } = {}) -> ->
   { address, queue, topic }
 
 handler = ( event ) ->
+
+  performance.clearMarks()
+  performance.clearMeasures()
 
   performance.mark "initialize"
   { queue, address, topic } = await initialize()
