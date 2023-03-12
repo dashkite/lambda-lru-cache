@@ -1,34 +1,34 @@
-import { test as _test, success } from "@dashkite/amen"
-import print from "@dashkite/amen-console"
 import assert from "@dashkite/assert"
+import {test, success} from "@dashkite/amen"
+import print from "@dashkite/amen-console"
 
-import { convert } from "@dashkite/bake"
-import { syncInvokeLambda } from "@dashkite/dolores/lambda"
+import { Client } from "../src/client"
 
-import request from "./data/template"
-import * as $ from "../src"
+do ->
 
-fetch = if process.env.targets == "remote"
-  (request) ->
-    { Payload, StatusCode } = await syncInvokeLambda "dashkite-test-load-media", request
-    if 200 <= StatusCode < 300
-      JSON.parse convert to: "utf8", from: "bytes", Payload
-    else
-      status: 502
-else
-  $.handler
+  client = new Client "dashkite-development-lru-cache", "test"
 
-test = ( description, content ) ->
-  _test { wait: false, description }, content
+  print await test "dashkite/lambda-lru-cache", [
 
-do ({ response } = {}) ->
-  print await test "@dashkite/lambda-load-media", [
+    test "basic caching", [
 
-    await test "media", [
+      await test "clear", ->
+        result = await client.clear()
+        assert !result?
+
       await test "get", ->
-        response = await fetch request
-        
-        assert.equal response.statusDescription, "ok"
-        assert response.headers[ "Content-Type" ]?.includes "text/css"
+        result = await client.get "foo"
+        assert !result?
+
+      await test "set", ->
+        result = await client.set "foo", "bar"
+        assert.equal result, "bar"
+
+      await test "get (after set)", ->
+        result = await client.get "foo"
+        assert.equal result, "bar"
     ]
+
   ]
+
+  process.exit if success then 0 else 1

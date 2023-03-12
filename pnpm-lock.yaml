@@ -9,14 +9,18 @@ specifiers:
   '@dashkite/genie': ^0.5.11
   '@dashkite/genie-presets': ^0.6.2
   '@dashkite/graphene-core': link:../graphene-core
+  '@dashkite/lru-cache': link:../lru-cache
   '@dashkite/media-type': link:../media-type
   '@dashkite/sky-lambda': link:../sky-lambda
   '@dashkite/sky-presets': link:../sky-presets
+  panda-confidential: ^3.1.2
 
 dependencies:
   '@dashkite/graphene-core': link:../graphene-core
+  '@dashkite/lru-cache': link:../lru-cache
   '@dashkite/media-type': link:../media-type
   '@dashkite/sky-lambda': link:../sky-lambda
+  panda-confidential: 3.1.2
 
 devDependencies:
   '@dashkite/amen': 0.2.0
@@ -2116,11 +2120,9 @@ packages:
       '@dashkite/base64': 1.0.1
       '@dashkite/joy': 0.3.16
       '@dashkite/utf8': 1.0.1
-    dev: true
 
   /@dashkite/base64/1.0.1:
     resolution: {integrity: sha512-7O3HajSgWaie/kme1bcdXQnVsMXn4A5m9YOaxWnEZ8z9LCrnJ8BGnpTgFJUqSC4mv0Z/0NBcwTmeGCoEc9VYoA==}
-    dev: true
 
   /@dashkite/genie-presets/0.6.4:
     resolution: {integrity: sha512-D97FVPYc0ersBOAWLOaY0bS9O/dvoDr10SB2mq63qM08bjopQJsPH+rZ/ienLCWpONFpa83B3274Xjz9wXSw5A==}
@@ -2169,7 +2171,6 @@ packages:
 
   /@dashkite/joy/0.3.16:
     resolution: {integrity: sha512-dsU0us4j1Pb+zceoBvLbnZ2PbmULkJUtM2vtWLxKmoc1DE4w9SVTiPTe6JWvF0A0vk90ldv+Lc9qEA5x3O+DtQ==}
-    dev: true
 
   /@dashkite/katana/0.4.8:
     resolution: {integrity: sha512-KOfMS5aRZItxPeMv0OXbOTCj5BZhN9jM190jae8HB7WgGB5uM5jEzRWmyh3yVbxTaL83o7csktRzUkxkr/Op1A==}
@@ -2212,9 +2213,12 @@ packages:
       - utf-8-validate
     dev: true
 
+  /@dashkite/tweetnacl/1.0.3:
+    resolution: {integrity: sha512-qBw5yhOw8mCe7fV6sw/5DIfQLW3txB+MlSDngf7h2WwnRz5CWzmhVBnKuYHcMXX9u50T4iW0AR/FwEl6Tm/TMQ==}
+    dev: false
+
   /@dashkite/utf8/1.0.1:
     resolution: {integrity: sha512-58HZrEijYUG9p8SAf4o/NR7U3qUq//9XbkQ7T5cHIY/RFjCVg9vpWZlHXkcbZp7v3CAMJgEGVXt/5/upvOBQAw==}
-    dev: true
 
   /@dashkite/writeme/0.2.0:
     resolution: {integrity: sha512-bAKlW98jo3H/2K/9UyLxBH2GzHpd7U6OUXNH5dCDCRQlTbC1HlpeswojEGPmTGbM8soR+vStItJ7siSqywqn0A==}
@@ -3967,6 +3971,14 @@ packages:
     resolution: {integrity: sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ==}
     engines: {node: '>=6'}
     dev: true
+
+  /panda-confidential/3.1.2:
+    resolution: {integrity: sha512-ERb595LplWijUe8sE5bFUsrl3gvNweqIV9GmpO54Y8jGYRm5/xVCZ/r71OBOVz0nf+jTo4b4A+IDcWbTI5vL5Q==}
+    dependencies:
+      '@dashkite/bake': 0.0.6
+      '@dashkite/joy': 0.3.16
+      '@dashkite/tweetnacl': 1.0.3
+    dev: false
 
   /panda-garden/4.0.3:
     resolution: {integrity: sha512-MjK3cpW/mAkljP2mAf/jmB3Lq7cOK5uwQA9CIgrmyVYRs6wZu2q4tWqS+pvL8/OZDLYs8OzIEZQAW8TvJExE0Q==}

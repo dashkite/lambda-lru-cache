@@ -20,7 +20,7 @@ sky:
   namespace: dashkite
   lambda:
     handlers:
-      - name: load-media
+      - name: lru-cache
         path: src/index.coffee
         configurations:
           default:
@@ -30,15 +30,7 @@ sky:
             environment:
               NODE_OPTIONS: --enable-source-maps
 
-  managed-policies:
-    - "arn:aws:iam::618441030511:policy/graphene-beta-manager"
-
-  buckets:
-    - name: workspaces.dashkite.com
-      publish:
-        root: build/browser/src
-        glob: "**/*.{png,gif,jpg,pdf,svg}"
-
-  secrets:
-    - name: dashkite-api-key
-      type: random-16
+  mixins:
+    - type: sqs
+    - type: sns
+      name: dashkite-lru-cache
